@@ -1,0 +1,29 @@
+# 依赖与虚拟环境
+node_modules/
+.venv/
+venv/
+
+# 构建产物与缓存
+dist/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# 运行时数据（SQLite 文件及 WAL 附属文件）
+data/*.db
+data/*.db-wal
+data/*.db-shm
+
+# 密钥：只提交 .env.example
+.env
+.env.*
+!.env.example
+
+# 打包输出（不入库）
+release/
+
+# IDE / 系统文件
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

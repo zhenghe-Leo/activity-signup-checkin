@@ -1,0 +1,19 @@
+# 构建上下文只需要源码与依赖清单；排除依赖目录、构建产物、本地数据、密钥与大文件
+**/node_modules
+**/dist
+.venv
+venv
+**/__pycache__
+**/*.pyc
+.pytest_cache
+data
+.env
+.env.*
+!.env.example
+.git
+.gitignore
+.vscode
+.idea
+recordings
+*.pdf
+tests/ai_eval/results

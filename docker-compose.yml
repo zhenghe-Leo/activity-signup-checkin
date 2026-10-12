@@ -1,0 +1,21 @@
+# Docker 启动（可选）：docker compose up --build
+# 浏览器打开 http://localhost:8000（宿主机端口可用环境变量 APP_PORT 修改）
+name: campus-activity
+services:
+  app:
+    build: .
+    image: campus-activity:latest
+    ports:
+      - "${APP_PORT:-8000}:8000"
+    env_file:
+      - path: .env          # 可选：配置 DeepSeek 密钥；不存在时 AI 自动降级
+        required: false
+    environment:
+      APP_PORT: "8000"      # 容器内固定监听 8000，避免 .env 中的 APP_PORT 改变容器端口
+      DATABASE_PATH: /app/data/app.db  # 固定在数据卷内，不受 .env 影响
+    volumes:
+      - app-data:/app/data  # 命名卷：SQLite（WAL）依赖文件锁，不挂载宿主机目录
+    restart: unless-stopped
+
+volumes:
+  app-data:
